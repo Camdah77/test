@@ -3,8 +3,8 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `art`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `Art by Camilla Dahlström`,
+    description: `An online portfolio showcasing original art.`,
+    author: `@CamillaDahlstrom`,
   },
-  plugins: [],
-}
+  plugins: [ gatsby-plugin-sass],}
