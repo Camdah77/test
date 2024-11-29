@@ -1,100 +1,89 @@
 import React, { Component } from 'react';
 import config from '../../config';
-import Scroll from './Scroll';
-
+import { Link } from 'gatsby';
 export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openMenu: false,
-      visibilityClass: '',
     };
   }
   toggleMenu = value => {
     this.setState({ openMenu: value });
   };
 
-  handleScroll = () => {
-    const { visibilityClass } = this.state;
-    if (window.pageYOffset > 300) {
-      if (visibilityClass !== 'navbar-shrink') {
-        this.setState({ visibilityClass: 'navbar-shrink' });
-      }
-    } else {
-      if (visibilityClass === 'navbar-shrink') {
-        this.setState({ visibilityClass: '' });
-      }
-    }
-  };
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-
   render() {
-    const { openMenu, visibilityClass } = this.state;
+    const { openMenu } = this.state;
+    const { activeLink } = this.props;
     return (
-      <nav
-        className={`navbar navbar-expand-lg navbar-light fixed-top ${visibilityClass}`}
-        id="mainNav"
-      >
+      <nav className="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
         <div className="container">
-          <a className="navbar-brand" href="#page-top">
+          <a
+            className="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none"
+            href="/#"
+          >
             {config.siteTitle}
           </a>
+
           <button
             onClick={_ => this.toggleMenu(!openMenu)}
-            className={`navbar-toggler navbar-toggler-right ${
-              openMenu ? '' : 'collapsed'
-            }`}
+            className={`navbar-toggler  ${openMenu ? '' : 'collapsed'}`}
             type="button"
             aria-controls="navbarResponsive"
             aria-expanded={openMenu}
             aria-label="Toggle navigation"
           >
-            Menu
-            <i className="fas fa-bars"></i>
+            <span className="navbar-toggler-icon"></span>
           </button>
-
           <div
             className={`collapse navbar-collapse ${openMenu ? 'show' : ''}`}
             id="navbarResponsive"
           >
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Scroll
-                  onClick={_ => this.toggleMenu(!openMenu)}
-                  type="id"
-                  element="download"
-                >
-                  <a className="nav-link" href="#download">
-                    Download
-                  </a>
-                </Scroll>
+            <ul className="navbar-nav text-center mx-auto">
+              <li
+                className={`nav-item px-lg-4 ${
+                  activeLink === 'home' ? 'active' : ''
+                }`}
+              >
+                <Link className="nav-link text-uppercase text-expanded" to="/">
+                  Home
+                </Link>
               </li>
-              <li className="nav-item">
-                <Scroll
-                  onClick={_ => this.toggleMenu(!openMenu)}
-                  type="id"
-                  element="features"
+              <li
+                className={`nav-item px-lg-4 ${
+                  activeLink === 'about' ? 'active' : ''
+                }`}
+              >
+                <Link
+                  className="nav-link text-uppercase text-expanded"
+                  to="/about"
                 >
-                  <a className="nav-link" href="#features">
-                    Features
-                  </a>
-                </Scroll>
+                  About
+                </Link>
               </li>
-              <li className="nav-item">
-                <Scroll
-                  onClick={_ => this.toggleMenu(!openMenu)}
-                  type="id"
-                  element="contact"
+              <li
+                className={`nav-item px-lg-4 ${
+                  activeLink === 'products' ? 'active' : ''
+                }`}
+              >
+                <Link
+                  className="nav-link text-uppercase text-expanded"
+                  to="/products"
                 >
-                  <a className="nav-link" href="#contact">
-                    Contact
-                  </a>
-                </Scroll>
+                  Products
+                </Link>
+              </li>
+              <li
+                className={`nav-item px-lg-4 ${
+                  activeLink === 'store' ? 'active' : ''
+                }`}
+              >
+                <Link
+                  className="nav-link text-uppercase text-expanded"
+                  to="/store"
+                >
+                  Store
+                </Link>
               </li>
             </ul>
           </div>

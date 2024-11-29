@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import Nav from './Nav';
-import TopNav from './TopNav';
+import Nav from './nav.js';
+import TopNav from './topnav.js';
 import { Link } from 'gatsby';
 import logo from '../assets/images/logo/anuya_Cirkel_black bottom.png';
+
+
+
 export default function SideBar({ sections = [] }) {
   const [headerOpen, toggleHeader] = useState(false);
   return (

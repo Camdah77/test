@@ -4,8 +4,8 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
 import '../assets/sass/main.scss';
-import Footer from './Footer';
-import Sidebar from './Sidebar';
+import Footer from './footer.js';
+import Sidebar from './sidebar.js';
 
 class Layout extends Component {
   constructor(props) {
