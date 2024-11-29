@@ -1,6 +1,7 @@
 import * as React from "react"
 import "../assets/css/index.css"  // Import the CSS file
 
+const punycode = require('punycode/');
 const links = [
   {
     text: "Tutorial",
